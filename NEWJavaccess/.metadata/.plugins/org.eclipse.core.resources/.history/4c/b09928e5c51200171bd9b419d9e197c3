@@ -1,0 +1,13 @@
+package NEWJavaccess;
+
+import java.sql.*;
+
+public class Ejercicio_1 {
+
+	public static void main(String[] args) throws ClassNotFoundException, SQLException{
+		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+		
+
+	}
+
+}
