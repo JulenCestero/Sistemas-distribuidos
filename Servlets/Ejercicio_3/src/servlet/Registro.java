@@ -21,22 +21,18 @@ public class Registro extends HttpServlet implements SingleThreadModel{
 		return false;
 	}
 	
-	/*public Boolean validateUser(String user, String pass) throws SQLException{
-		Connection connection = DriverManager.getConnection(url);
-		Statement statement = connection.createStatement();
-		String sql = "INSERT INTO P4Ejer4 (USUARIO, PASSWORD) VALUES ('" + user + "', '" + pass + "'";
-		int nrows = statement.executeUpdate(sql);
-		if(nrows == 0) return false;
-		return true;
-	}
-	*/
+
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
 		//first, set the "content type" header of the response
 		HttpSession session = req.getSession(true);
 		res.setContentType("text/html");
 		//Get client's form data
-		String user = req.getParameter("user");
-		String pass = req.getParameter("pass");
+		String user = (String)session.getAttribute("usuario");
+		String pass = (String)session.getAttribute("pass");
+		if(req.getParameter("user") != null){
+			user = req.getParameter("user");
+			pass = req.getParameter("pass");
+		}
 		try {
 			if(isNameInDb(user)){
 				PrintWriter toClient = res.getWriter();
